@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Game Center: List of Games</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <p th:text="'Name: ' + ${game.name}" />
+    <p th:text="'Publisher: ' + ${game.publisher}" />
+    <p th:text="'Year: ' + ${game.year}" />
+    <p th:text="'Description: ' + ${game.description}" />
+    <a href="/newgame">Submit another game</a>
+</body>
+
+</html>
