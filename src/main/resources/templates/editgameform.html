@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Game Center: Game Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Edit Game </h1>
+
+    <br>
+
+    <form action="#" th:action="@{/newgame}" th:object="${game}" method="post">
+        <label for="id"></label>
+
+        <input type="hidden" id="id" th:field="*{id}" readonly="readonly=" />
+
+        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
+        <p>Year: <input type="text" th:field="*{publishingYear}" /></p>
+        <p>Description: <input type="text" th:field="*{description}" /></p>
+
+        <p><input type="submit" class="btn btn-primary" value="Save game" /></p>
+    </form>
+
+
+</body>
+
+</html>

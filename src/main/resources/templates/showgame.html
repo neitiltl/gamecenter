@@ -8,17 +8,32 @@
 </head>
 
 <body>
-    <h1 th:text="'Game Added: '">Game</h1>
-    <br>
-    <div>
-        <p th:text="'Name: ' + ${game.name}" />
-        <p th:text="'Publisher: ' + ${game.publisher}" />
-        <p th:text="'Year: ' + ${game.publishingYear}" />
-        <p th:text="'Description: ' + ${game.description}" />
-        <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete Game</a></td>
-    </div>
+    <h1 th:text="'Game Saved: '">Game</h1>
     <br>
 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td th:text="${game.name}"></td>
+                <td th:text="${game.publisher}"></td>
+                <td th:text="${game.publishingYear}"></td>
+                <td th:text="${game.description}"></td>
+                <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
 
     <p>
         <a href="/newgame" class="btn btn-primary">Add new game</a>

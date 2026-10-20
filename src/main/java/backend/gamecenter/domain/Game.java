@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Game {
@@ -16,6 +18,10 @@ public class Game {
     private String publisher;
     private Integer publishingYear;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "platformId")
+    private Platform platform;
 
     public Game() {
     }
@@ -75,11 +81,18 @@ public class Game {
         this.description = description;
     }
 
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
     @Override
     public String toString() {
-        return "Game [name=" + name + ", publisher=" + publisher + ", publishingYear=" + publishingYear
-                + ", description=" + description
-                + "]";
+        return "Game [id=" + id + ", name=" + name + ", publisher=" + publisher + ", publishingYear=" + publishingYear
+                + ", description=" + description + ", platform=" + platform + "]";
     }
 
 }

@@ -48,6 +48,10 @@ public class GameController {
         return "redirect:../gamelist";
     }
 
-    
+    @GetMapping("/edit/{id}")
+    public String editGame(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("game", gameRepository.findById(id));
+        return "editgameform";
+    }
 
 }

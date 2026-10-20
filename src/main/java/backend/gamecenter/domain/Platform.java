@@ -1,9 +1,13 @@
 package backend.gamecenter.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Platform {
@@ -13,6 +17,9 @@ public class Platform {
 
     private Long platformId;
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
+    private List<Game> games;
 
     public Platform() {
     }
@@ -36,6 +43,14 @@ public class Platform {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
     }
 
     @Override
