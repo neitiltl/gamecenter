@@ -4,14 +4,38 @@
 <head>
     <title>Game Center: List of Games</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
-    <p th:text="'Name: ' + ${game.name}" />
-    <p th:text="'Publisher: ' + ${game.publisher}" />
-    <p th:text="'Year: ' + ${game.year}" />
-    <p th:text="'Description: ' + ${game.description}" />
-    <a href="/newgame">Submit another game</a>
+    <h1>List of Games</h1>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="game : ${games}">
+                <td th:text="${game.name}"></td>
+                <td th:text="${game.publisher}"></td>
+                <td th:text="${game.publishingYear}"></td>
+                <td th:text="${game.description}"></td>
+                <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/newgame" class="btn btn-primary">Add new game</a>
+    </p>
 </body>
 
 </html>

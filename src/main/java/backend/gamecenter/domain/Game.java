@@ -1,21 +1,37 @@
 package backend.gamecenter.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Game {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
     private String name;
     private String publisher;
-    private Integer year;
+    private Integer publishingYear;
     private String description;
 
     public Game() {
     }
 
-    public Game(Long id, String name, String publisher, Integer year, String description) {
+    public Game(Long id, String name, String publisher, Integer publishingYear, String description) {
         this.id = id;
         this.name = name;
         this.publisher = publisher;
-        this.year = year;
+        this.publishingYear = publishingYear;
+        this.description = description;
+    }
+
+    public Game(String name, String publisher, Integer publishingYear, String description) {
+        this.name = name;
+        this.publisher = publisher;
+        this.publishingYear = publishingYear;
         this.description = description;
     }
 
@@ -43,12 +59,12 @@ public class Game {
         this.publisher = publisher;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getPublishingYear() {
+        return publishingYear;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setPublishingYear(Integer publishingYear) {
+        this.publishingYear = publishingYear;
     }
 
     public String getDescription() {
@@ -61,7 +77,8 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game [name=" + name + ", publisher=" + publisher + ", year=" + year + ", description=" + description
+        return "Game [name=" + name + ", publisher=" + publisher + ", publishingYear=" + publishingYear
+                + ", description=" + description
                 + "]";
     }
 

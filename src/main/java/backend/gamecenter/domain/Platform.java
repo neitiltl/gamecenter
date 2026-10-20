@@ -1,14 +1,33 @@
 package backend.gamecenter.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Platform {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    private Long platformId;
     private String name;
 
     public Platform() {
     }
 
-    public Platform(String name) {
+    public Platform(Long platformId, String name) {
+        this.platformId = platformId;
         this.name = name;
+    }
+
+    public Long getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(Long platformId) {
+        this.platformId = platformId;
     }
 
     public String getName() {
@@ -21,7 +40,7 @@ public class Platform {
 
     @Override
     public String toString() {
-        return "Platform [name=" + name + "]";
+        return "Platform [platformId=" + platformId + ", name=" + name + "]";
     }
 
 }

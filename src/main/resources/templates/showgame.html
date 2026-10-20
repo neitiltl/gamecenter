@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Game Center: Last Game Added</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1 th:text="'Game Added: '">Game</h1>
+    <br>
+    <div>
+        <p th:text="'Name: ' + ${game.name}" />
+        <p th:text="'Publisher: ' + ${game.publisher}" />
+        <p th:text="'Year: ' + ${game.publishingYear}" />
+        <p th:text="'Description: ' + ${game.description}" />
+        <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete Game</a></td>
+    </div>
+    <br>
+
+
+    <p>
+        <a href="/newgame" class="btn btn-primary">Add new game</a>
+    </p>
+
+    <p>
+        <a href="/gamelist" class="btn btn-primary">List All Games</a>
+    </p>
+
+</body>
+
+</html>

@@ -4,13 +4,21 @@
 <head>
     <title>Game Center: Index</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
-    <h1 th:text="'Welcome to the Game Center, ' + ${name}">Welcome</h1>
+    <h1 th:text="'Welcome to the Game Center'">Welcome</h1>
 
+    <br>
 
-    <a href="/newgame">Add new game</a>
+    <p>
+        <a href="/newgame" class="btn btn-primary">Add new game</a>
+    </p>
+
+    <p>
+        <a href="/gamelist" class="btn btn-primary">List All Games</a>
+    </p>
 
 </body>
 
