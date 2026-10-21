@@ -3,19 +3,22 @@ package backend.gamecenter.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import backend.gamecenter.domain.Game;
 import backend.gamecenter.domain.GameRepository;
+import backend.gamecenter.domain.PlatformRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class GameController {
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
+    private final PlatformRepository platformRepository;
 
-    public GameController(GameRepository gameRepository) {
+    public GameController(GameRepository gameRepository, PlatformRepository platformRepository) {
         this.gameRepository = gameRepository;
+        this.platformRepository = platformRepository;
     }
 
     @GetMapping({ "/", "/index" })
@@ -26,11 +29,12 @@ public class GameController {
     @GetMapping("/newgame")
     public String returnGameForm(Model model) {
         model.addAttribute("game", new Game());
+        model.addAttribute("platforms", platformRepository.findAll());
         return "gameform";
     }
 
-    @PostMapping("/newgame")
-    public String submitGame(Game game) {
+    @PostMapping("/savegame")
+    public String saveGame(Game game) {
         gameRepository.save(game);
         return "showgame";
     }
@@ -51,6 +55,7 @@ public class GameController {
     @GetMapping("/edit/{id}")
     public String editGame(@PathVariable("id") Long id, Model model) {
         model.addAttribute("game", gameRepository.findById(id));
+        model.addAttribute("platforms", platformRepository.findAll());
         return "editgameform";
     }
 

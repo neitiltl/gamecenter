@@ -29,6 +29,10 @@ public class Platform {
         this.name = name;
     }
 
+    public Platform(String name) {
+        this.name = name;
+    }
+
     public Long getPlatformId() {
         return platformId;
     }

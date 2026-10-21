@@ -7,16 +7,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 @Entity
 public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
+    @NotNull
     private Long id;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String name;
+
     private String publisher;
     private Integer publishingYear;
+
+    @Size(max = 750)
     private String description;
 
     @ManyToOne
@@ -26,19 +37,21 @@ public class Game {
     public Game() {
     }
 
-    public Game(Long id, String name, String publisher, Integer publishingYear, String description) {
+    public Game(Long id, String name, String publisher, Integer publishingYear, String description, Platform platform) {
         this.id = id;
         this.name = name;
         this.publisher = publisher;
         this.publishingYear = publishingYear;
         this.description = description;
+        this.platform = platform;
     }
 
-    public Game(String name, String publisher, Integer publishingYear, String description) {
+    public Game(String name, String publisher, Integer publishingYear, String description, Platform platform) {
         this.name = name;
         this.publisher = publisher;
         this.publishingYear = publishingYear;
         this.description = description;
+        this.platform = platform;
     }
 
     public Long getId() {

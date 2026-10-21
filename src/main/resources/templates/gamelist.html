@@ -27,6 +27,8 @@
                 <td th:text="${game.publisher}"></td>
                 <td th:text="${game.publishingYear}"></td>
                 <td th:text="${game.description}"></td>
+                <td th:text="${game.platform.name}"></td>
+
                 <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
                 <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
 

@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import backend.gamecenter.domain.Game;
 import backend.gamecenter.domain.GameRepository;
+import backend.gamecenter.domain.Platform;
+import backend.gamecenter.domain.PlatformRepository;
 
 @SpringBootApplication
 public class GamecenterApplication {
@@ -20,13 +22,30 @@ public class GamecenterApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(GameRepository gameRepository) {
+	public CommandLineRunner demo(GameRepository gameRepository, PlatformRepository platformRepository) {
 		return (args) -> {
+
+			log.info("save platforms");
+			Platform platform1 = new Platform("PC");
+			Platform platform2 = new Platform("PlayStation");
+			Platform platform3 = new Platform("Xbox");
+			Platform platform4 = new Platform("Nintendo");
+			Platform platform5 = new Platform("Card Game");
+			Platform platform6 = new Platform("Board Game");
+
+			platformRepository.save(platform1);
+			platformRepository.save(platform2);
+			platformRepository.save(platform3);
+			platformRepository.save(platform4);
+			platformRepository.save(platform5);
+			platformRepository.save(platform6);
+
 			log.info("save games");
 			gameRepository.save(new Game("The Legend of Zelda: Breath of the Wild", "Nintendo", 2017,
-					"An open-world action-adventure game set in the kingdom of Hyrule."));
+					"An open-world action-adventure game set in the kingdom of Hyrule.", platform4));
 			gameRepository.save(new Game("Super Mario Odyssey", "Nintendo", 2017,
-					"A 3D platformer where Mario travels across various kingdoms to rescue Princess Peach from Bowser."));
+					"A 3D platformer where Mario travels across various kingdoms to rescue Princess Peach from Bowser.",
+					platform4));
 
 			log.info("fetch all games");
 			for (Game game : gameRepository.findAll()) {
