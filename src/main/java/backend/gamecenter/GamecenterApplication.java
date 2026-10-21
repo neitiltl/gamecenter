@@ -51,6 +51,16 @@ public class GamecenterApplication {
 			for (Game game : gameRepository.findAll()) {
 				log.info(game.toString());
 			}
+
+			log.info("fetch all platforms");
+			for (Platform platform : platformRepository.findAll()) {
+				log.info(platform.toString());
+			}
+
+			log.info("fetch all games");
+			for (Game game : gameRepository.findAll()) {
+				log.info(game.toString());
+			}
 		};
 	}
 }
