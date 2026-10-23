@@ -10,6 +10,8 @@ import backend.gamecenter.domain.Game;
 import backend.gamecenter.domain.GameRepository;
 import backend.gamecenter.domain.PlatformRepository;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class GameController {
@@ -59,4 +61,9 @@ public class GameController {
         return "editgameform";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+    
 }
