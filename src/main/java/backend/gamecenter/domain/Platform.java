@@ -2,6 +2,8 @@ package backend.gamecenter.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ public class Platform {
     private Long platformId;
     private String name;
 
+    @JsonIgnoreProperties("platform")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
     private List<Game> games;
 

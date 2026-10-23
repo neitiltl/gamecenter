@@ -1,5 +1,7 @@
 package backend.gamecenter.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +32,7 @@ public class Game {
     @Size(max = 750)
     private String description;
 
+    @JsonIgnoreProperties("games")
     @ManyToOne
     @JoinColumn(name = "platformId")
     private Platform platform;
