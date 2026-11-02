@@ -31,7 +31,9 @@
                 <td th:text="${game.platform.name}"></td>
 
                 <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
-                <td><a th:href="@{/delete/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
+
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
+                        class="btn btn-danger">Delete</a></td>
             </tr>
         </tbody>
     </table>

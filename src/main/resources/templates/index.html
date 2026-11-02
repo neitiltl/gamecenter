@@ -29,7 +29,8 @@
         <a href="/platformlist" class="btn btn-primary">List All Platforms</a>
     </p>
     <p>
-        <a href="/createplatform" class="btn btn-primary">Add New Platform</a>
+        <td sec:authorize="hasAuthority('ADMIN')"> <a href="/createplatform" class="btn btn-primary">Add New
+                Platform</a> </td>
     </p>
 
     <br>

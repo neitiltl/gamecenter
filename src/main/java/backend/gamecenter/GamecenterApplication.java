@@ -12,6 +12,8 @@ import backend.gamecenter.domain.Game;
 import backend.gamecenter.domain.GameRepository;
 import backend.gamecenter.domain.Platform;
 import backend.gamecenter.domain.PlatformRepository;
+import backend.gamecenter.domain.User;
+import backend.gamecenter.domain.UserRepository;
 
 @SpringBootApplication
 public class GamecenterApplication {
@@ -22,7 +24,8 @@ public class GamecenterApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(GameRepository gameRepository, PlatformRepository platformRepository) {
+	public CommandLineRunner demo(GameRepository gameRepository, PlatformRepository platformRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 
 			log.info("save platforms");
@@ -61,6 +64,12 @@ public class GamecenterApplication {
 			for (Game game : gameRepository.findAll()) {
 				log.info(game.toString());
 			}
+
+			User user1 = new User("maija", "$2a$10$pwCDX1OhyXh.Vw.DOIxIPOXOpo8Vbx3jAZm8T2zh6Zosd58CRPXLa", "ADMIN");
+			User user2 = new User("matti", "$2a$10$id./NxBgeF16H31oWID9me1r6Ucg4y/COO9gTYkaYXI7riJCkdrZC", "USER");
+			userRepository.save(user1);
+			userRepository.save(user2);
+
 		};
 	}
 }

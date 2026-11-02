@@ -48,7 +48,7 @@ public class GameController {
     }
 
     @GetMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteGame(
             @PathVariable("id") Long id, Model model) {
         gameRepository.deleteById(id);

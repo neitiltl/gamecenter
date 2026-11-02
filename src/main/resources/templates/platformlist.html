@@ -29,8 +29,16 @@
     </table>
 
     <p>
-        <a href="/createplatform" class="btn btn-primary">Add new platform</a>
+        <td sec:authorize="hasAuthority('ADMIN')"> <a href="/createplatform" class="btn btn-primary">Add new
+                platform</a></td>
     </p>
+
+    <br>
+    <p>
+        <a href="/gamelist" class="btn btn-primary">List All Games</a>
+    </p>
+
+
 </body>
 
 </html>
