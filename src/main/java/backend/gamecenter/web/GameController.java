@@ -1,5 +1,6 @@
 package backend.gamecenter.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,6 @@ import backend.gamecenter.domain.GameRepository;
 import backend.gamecenter.domain.PlatformRepository;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class GameController {
@@ -48,6 +48,7 @@ public class GameController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteGame(
             @PathVariable("id") Long id, Model model) {
         gameRepository.deleteById(id);
@@ -65,5 +66,5 @@ public class GameController {
     public String login() {
         return "login";
     }
-    
+
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Game Center: Index</title>
@@ -8,17 +9,19 @@
 </head>
 
 <body>
-    <h1 th:text="'Welcome to the Game Center'">Welcome</h1>
+    <h1> Welcome to the Game Center, <span sec:authentication="name"></span>!</h1>
 
     <br>
+
+    <p>
+        <a href="/gamelist" class="btn btn-primary">List All Games</a>
+    </p>
 
     <p>
         <a href="/newgame" class="btn btn-primary">Add new game</a>
     </p>
 
-    <p>
-        <a href="/gamelist" class="btn btn-primary">List All Games</a>
-    </p>
+
 
     <br>
 
