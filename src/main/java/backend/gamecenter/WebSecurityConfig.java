@@ -31,6 +31,7 @@ public class WebSecurityConfig {
                 http
                                 .authorizeHttpRequests(authorize -> authorize
                                                 .requestMatchers("/css/**").permitAll() // Enable css when logged out
+                                                .requestMatchers("/gamelist").permitAll() // Enable gamelist when logged out
                                                 .requestMatchers("/delete/**").hasAuthority("ADMIN")
                                                 .anyRequest().authenticated())
                                 .formLogin(formlogin -> formlogin

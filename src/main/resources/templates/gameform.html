@@ -15,12 +15,24 @@
     <form action="#" th:action="@{/savegame}" th:object="${game}" method="post">
         <label for="id"></label>
 
-        <input type="hidden" id="id" th:field="*{id}" readonly="readonly=" />
+        <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
 
-        <p>Name: <input type="text" th:field="*{name}" /></p>
+        <p>Name: <input type="text" th:field="*{name}" />
+            <span th:if="${#fields.hasErrors('name')}">Name is required and must be between 2 and 50 characters
+                long</span>
+        </p>
+
+
         <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
-        <p>Year: <input type="text" th:field="*{publishingYear}" /></p>
-        <p>Description: <input type="text" th:field="*{description}" /></p>
+
+        <p>Year: <input type="number" th:field="*{publishingYear}" />
+            <span th:if="${#fields.hasErrors('publishingYear')}">Year must be between 1950 and 2050</span>
+        </p>
+
+        <p>Description: <input type="text" th:field="*{description}" />
+            <span th:if="${#fields.hasErrors('description')}">Description must be no more than 750 characters
+                long</span>
+        </p>
 
 
         <label for="platformlist">Platform: </label>

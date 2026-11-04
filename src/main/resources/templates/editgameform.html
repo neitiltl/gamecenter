@@ -15,11 +15,11 @@
     <form action="#" th:action="@{/savegame}" th:object="${game}" method="post">
 
         <label for="id"></label>
-        <input type="hidden" id="id" th:field="*{id}" readonly="readonly=" />
+        <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
 
         <p>Name: <input type="text" th:field="*{name}" /></p>
         <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
-        <p>Year: <input type="text" th:field="*{publishingYear}" /></p>
+        <p>Year: <input type="number" th:field="*{publishingYear}" /></p>
         <p>Description: <input type="text" th:field="*{description}" /></p>
 
         <label for="platformlist">Platform: </label>

@@ -1,12 +1,15 @@
 package backend.gamecenter.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import backend.gamecenter.domain.Platform;
 import backend.gamecenter.domain.PlatformRepository;
+import jakarta.validation.Valid;
 
 @Controller
 public class PlatformController {
@@ -23,13 +26,18 @@ public class PlatformController {
     }
 
     @GetMapping("/createplatform")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String createPlatform(Model model) {
         model.addAttribute("platform", new Platform());
         return "createplatform";
     }
 
     @PostMapping("/saveplatform")
-    public String savePlatform(Platform platform) {
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String savePlatform(@Valid Platform platform, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "createplatform";
+        }
         platformRepository.save(platform);
         return "redirect:/platformlist";
     }

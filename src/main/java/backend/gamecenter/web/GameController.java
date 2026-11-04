@@ -3,7 +3,9 @@ package backend.gamecenter.web;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -36,9 +38,14 @@ public class GameController {
     }
 
     @PostMapping("/savegame")
-    public String saveGame(Game game) {
-        gameRepository.save(game);
-        return "showgame";
+    public String saveGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("platforms", platformRepository.findAll());
+            return "gameform";
+        } else {
+            gameRepository.save(game);
+            return "showgame";
+        }
     }
 
     @GetMapping("/gamelist")

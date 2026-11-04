@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Platform {
@@ -18,6 +19,8 @@ public class Platform {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long platformId;
+
+    @NotBlank
     private String name;
 
     @JsonIgnoreProperties("platform")

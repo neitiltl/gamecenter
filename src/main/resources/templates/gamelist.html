@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <h1>List of Games for user <span sec:authentication="name"></span>.</h1>
+    <h1>List of Games</h1>
+    <p sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+        Logged in as <span sec:authentication="name"></span>.</p>
     <br>
 
     <table class="table table-striped">
@@ -19,6 +21,7 @@
                 <th>Publisher</th>
                 <th>Year</th>
                 <th>Description</th>
+                <th>Platform</th>
             </tr>
         </thead>
 
@@ -30,10 +33,11 @@
                 <td th:text="${game.description}"></td>
                 <td th:text="${game.platform.name}"></td>
 
-                <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
+
+                <td sec:authorize="hasAnyAuthority('USER', 'ADMIN')"> <a th:href="@{/edit/{id}(id=${game.id})}"
+                        class="btn btn-warning">Edit</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
                         class="btn btn-danger">Delete</a></td>
-
 
             </tr>
         </tbody>
@@ -41,12 +45,12 @@
     <br>
 
     <p>
-        <a href="/newgame" class="btn btn-primary">Add new game</a>
+        <a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/newgame" class="btn btn-primary">Add new game</a>
     </p>
     <br>
 
     <p>
-    <form th:action="@{/logout}" method="post">
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out" class="btn btn-danger" />
     </form>
     </p>
