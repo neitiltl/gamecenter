@@ -9,41 +9,42 @@
 </head>
 
 <body>
-    <h1 th:text="'Game Saved: '">Game</h1>
-    <br>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Publisher</th>
-                <th>Year</th>
-                <th>Description</th>
-            </tr>
-        </thead>
+    <main class="container mt-4">
+        <h1 th:text="'Saved game: ' + ${game.name}">Game</h1>
+        <br>
 
-        <tbody>
-            <tr>
-                <td th:text="${game.name}"></td>
-                <td th:text="${game.publisher}"></td>
-                <td th:text="${game.publishingYear}"></td>
-                <td th:text="${game.description}"></td>
-                <td th:text="${game.platform.name}"></td>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Publisher</th>
+                    <th>Year</th>
+                    <th>Description</th>
+                    <th>Platform</th>
+                </tr>
+            </thead>
 
-                <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
+            <tbody>
+                <tr>
+                    <td th:text="${game.name}"></td>
+                    <td th:text="${game.publisher}"></td>
+                    <td th:text="${game.publishingYear}"></td>
+                    <td th:text="${game.description}"></td>
+                    <td th:text="${game.platform.name}"></td>
 
-                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
-                        class="btn btn-danger">Delete</a></td>
-            </tr>
-        </tbody>
-    </table>
+                    <td> <a th:href="@{/edit/{id}(id=${game.id})}" class="btn btn-warning">Edit</a></td>
 
-    <br>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
+                            class="btn btn-danger">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
 
-       <p>
-        <a href="/gamelist" class="btn btn-primary">List All Games</a>
-    </p>
-
+    </main>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

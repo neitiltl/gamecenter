@@ -2,29 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Game Center: Add Platform</title>
+    <title>Game Center: Create Platform</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
-    <h1>Add New Platform </h1>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <br>
 
-    <form action="#" th:action="@{/saveplatform}" th:object="${platform}" method="post">
-
-        <div> <label for="name">Platform Name:</label>
-            <input type="text" id="name" th:field="*{name}" />
-            <span th:if="${#fields.hasErrors('name')}">Platform name is required</span>
-        </div>
+    <main class="container mt-4">
+        <h1>Create Platform:</h1>
 
         <br>
 
-        <p><input type="submit" class="btn btn-primary" value="Save platform" /></p>
-    </form>
+        <form action="#" th:action="@{/saveplatform}" th:object="${platform}" method="post">
 
+            <div> <label for="name">Platform Name:</label>
+                <input type="text" id="name" th:field="*{name}" />
+                <span th:if="${#fields.hasErrors('name')}">Platform name is required</span>
+            </div>
 
+            <br>
+
+            <p><input type="submit" class="btn btn-primary" value="Save platform" /></p>
+        </form>
+    </main>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

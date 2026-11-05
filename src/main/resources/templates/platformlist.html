@@ -9,36 +9,38 @@
 </head>
 
 <body>
-    <h1>List of Platforms</h1>
-    <br>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
+    <main class="container mt-4">
+        <h1>Platforms</h1>
+        <br>
 
-        <tbody>
-            <tr th:each="platform : ${platforms}">
-                <td th:text="${platform.name}"></td>
-            </tr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Platform Name</th>
+                </tr>
+            </thead>
 
-            </tr>
-        </tbody>
-    </table>
+            <tbody>
+                <tr th:each="platform : ${platforms}">
+                    <td th:text="${platform.name}"></td>
+                </tr>
 
-    <p sec:authorize="hasAuthority('ADMIN')">
-        <td> <a href="/createplatform" class="btn btn-primary">Add new
-                platform</a></td>
-    </p>
+                </tr>
+            </tbody>
+        </table>
 
-    <br>
-    <p>
-        <a href="/gamelist" class="btn btn-primary">List All Games</a>
-    </p>
+        <br>
+        <p sec:authorize="hasAuthority('ADMIN')">
+            <td> <a href="/createplatform" class="btn btn-primary">Create new
+                    platform</a></td>
+        </p>
 
 
+    </main>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

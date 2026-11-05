@@ -9,40 +9,38 @@
 </head>
 
 <body>
-    <h1> Welcome to the Game Center, <span sec:authentication="name"></span>!</h1>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <br>
+    <main class="container mt-4">
+        <h1> Welcome to the Game Center, <span sec:authentication="name"></span>!</h1>
 
-    <p>
-        <a href="/gamelist" class="btn btn-primary">List All Games</a>
-    </p>
+        <br>
 
-    <p>
-        <a href="/newgame" class="btn btn-primary">Add new game</a>
-    </p>
+        <p>
+            <a href="/newgame" class="btn btn-primary">Add new game</a>
+        </p>
 
+        <br>
 
+        <p>
+            <a href="/platformlist" class="btn btn-primary">List all platforms</a>
+        </p>
+        <p sec:authorize="hasAuthority('ADMIN')">
+            <a href="/createplatform" class="btn btn-primary">Add new platform</a>
+        </p>
 
-    <br>
+        <br>
 
-    <p>
-        <a href="/platformlist" class="btn btn-primary">List All Platforms</a>
-    </p>
-    <p>
-        <td sec:authorize="hasAuthority('ADMIN')"> <a href="/createplatform" class="btn btn-primary">Add New
-                Platform</a> </td>
-    </p>
+        <p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger" />
+        </form>
+        </p>
 
-    <br>
+    </main>
 
-    <p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" class="btn btn-danger" />
-    </form>
-    </p>
-
-
-
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

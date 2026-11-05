@@ -9,51 +9,59 @@
 </head>
 
 <body>
-    <h1>List of Games</h1>
-    <p sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
-        Logged in as <span sec:authentication="name"></span>.</p>
-    <br>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Publisher</th>
-                <th>Year</th>
-                <th>Description</th>
-                <th>Platform</th>
-            </tr>
-        </thead>
+    <main class="container mt-4">
+        <h1>Games</h1>
+        <p sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+            Logged in as <span sec:authentication="name"></span>.</p>
+        <br>
 
-        <tbody>
-            <tr th:each="game : ${games}">
-                <td th:text="${game.name}"></td>
-                <td th:text="${game.publisher}"></td>
-                <td th:text="${game.publishingYear}"></td>
-                <td th:text="${game.description}"></td>
-                <td th:text="${game.platform.name}"></td>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Publisher</th>
+                    <th>Year</th>
+                    <th>Description</th>
+                    <th>Platform</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="game : ${games}">
+                    <td th:text="${game.name}"></td>
+                    <td th:text="${game.publisher}"></td>
+                    <td th:text="${game.publishingYear}"></td>
+                    <td th:text="${game.description}"></td>
+                    <td th:text="${game.platform.name}"></td>
 
 
-                <td sec:authorize="hasAnyAuthority('USER', 'ADMIN')"> <a th:href="@{/edit/{id}(id=${game.id})}"
-                        class="btn btn-warning">Edit</a></td>
-                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
-                        class="btn btn-danger">Delete</a></td>
+                    <td sec:authorize="hasAnyAuthority('USER', 'ADMIN')"> <a th:href="@{/edit/{id}(id=${game.id})}"
+                            class="btn btn-warning">Edit</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${game.id})}"
+                            class="btn btn-danger">Delete</a></td>
 
-            </tr>
-        </tbody>
-    </table>
-    <br>
+                </tr>
+            </tbody>
+        </table>
+        <br>
 
-    <p>
-        <a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/newgame" class="btn btn-primary">Add new game</a>
-    </p>
-    <br>
+        <p>
+            <a sec:authorize="hasAnyAuthority('USER', 'ADMIN')" href="/newgame" class="btn btn-primary">Add new game</a>
+        </p>
+        <br>
 
-    <p>
-    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" class="btn btn-danger" />
-    </form>
-    </p>
+        <p>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger" />
+        </form>
+        </p>
+
+    </main>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

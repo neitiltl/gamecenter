@@ -1,0 +1,58 @@
+<nav th:fragment="navigation" class="container mt-3 pt-3 border-bottom ">
+
+    <!-- https://www.w3schools.com/css/css_navbar_horizontal.asp -->
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #d0caf0;
+
+        }
+
+        ul li {
+            float: left;
+        }
+
+        ul li a {
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul li a:hover {
+            background-color: #b0a0e0;
+        }
+    </style>
+    <ul>
+        <li><a href="/" th:href="@{/}">Home</a></li>
+        <li><a href="/gamelist" th:href="@{/gamelist}">Games</a></li>
+        <li><a href="/platformlist" th:href="@{/platformlist}">Platforms</a></li>
+
+
+
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a href="/createplatform" th:href="@{/createplatform}">Create Platform</a>
+        </li>
+
+        <li sec:authorize="isAnonymous()" style="float: right;"><a href="/login" th:href="@{/login}">Login</a></li>
+
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-danger" />
+            </form>
+        </li>
+        <!--  <li sec:authorize="isAuthenticated()" style="float: right;"><a href="/logout" th:href="@{/logout}">Logout</a>
+        </li> -->
+        <!-- https://www.baeldung.com/spring-thymeleaf-user-info -->
+        <!-- https://www.thymeleaf.org/doc/articles/springsecurity.html -->
+
+    </ul>
+</nav>
+
+
+
+<!-- https://www.javathinking.com/blog/working-with-fragments-in-thymeleaf/ -->

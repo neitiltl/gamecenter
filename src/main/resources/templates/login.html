@@ -1,3 +1,4 @@
+<!-- https://www.w3schools.com/css/tryit.asp?filename=trycss_form_responsive -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
@@ -6,30 +7,122 @@
     <title>Game Center: Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .responsive-form {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 4px;
+            border: 2px solid #04AA6D;
+            ;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0 auto;
+            /* Center the form horizontally */
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+
+        label {
+            min-width: 48%;
+            margin-bottom: 10px;
+        }
+
+        input[type=text],
+        select {
+            min-width: 45%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        input[type=password],
+        select {
+            min-width: 45%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+
+        textarea {
+            min-width: 45%;
+            height: 150px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            label,
+            input[type=text],
+            input[type=submit],
+            select,
+            textarea {
+                flex: 100%;
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Login to Game Center</h1>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <br>
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-    <br>
-    <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username" /> </label></div>
-        <br>
-        <div><label> Password: <input type="password" name="password" /> </label></div>
-        <br>
-        <div><input type="submit" value="Sign In" class="btn btn-primary" /></div>
-    </form>
+    <main class="container mt-4">
 
-    <br>
-    <p>admin: maija, pw: maija </p>
-    <p>user: matti, pw: matti </p>
+        <div class="container mt-4 margin 25px" style="color: red; margin: 25px; text-align: center;"
+            th:if="${param.error}">
+            <h2>Invalid username and password.</h2>
+        </div>
+        <div class="container mt-4 " style="color: blue; margin: 25px; text-align: center;" th:if="${param.logout}">
+            <h2>You have been logged out.</h2>
+        </div>
+
+        <div class="responsive-form">
+
+            <form th:action="@{/login}" method="post">
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Username">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password">
+
+
+                <input type="submit" value="Sign In" class="btn btn-primary" />
+            </form>
+
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
 
 </body>
 

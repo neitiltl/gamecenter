@@ -8,32 +8,38 @@
 </head>
 
 <body>
-    <h1>Edit Game </h1>
+    <header th:replace="fragments/header :: header"></header>
+    <div th:replace="fragments/navigation :: navigation"></div>
 
-    <br>
-
-    <form action="#" th:action="@{/savegame}" th:object="${game}" method="post">
-
-        <label for="id"></label>
-        <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
-
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
-        <p>Year: <input type="number" th:field="*{publishingYear}" /></p>
-        <p>Description: <input type="text" th:field="*{description}" /></p>
-
-        <label for="platformlist">Platform: </label>
-        <select id="platformlist" th:field="*{platform.platformId}" class="form-control">
-            <option th:each="platform: ${platforms}" th:value="${platform.platformId}" th:text="${platform.name}">
-            </option>
-        </select>
+    <main class="container mt-4">
+        <h1>Edit Game </h1>
 
         <br>
 
-        <p><input type="submit" class="btn btn-primary" value="Save game" /></p>
-    </form>
+        <form action="#" th:action="@{/savegame}" th:object="${game}" method="post">
 
+            <label for="id"></label>
+            <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
 
+            <p>Name: <input type="text" th:field="*{name}" /></p>
+            <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
+            <p>Year: <input type="number" th:field="*{publishingYear}" /></p>
+            <p>Description: <input type="text" th:field="*{description}" /></p>
+
+            <label for="platformlist">Platform: </label>
+            <select id="platformlist" th:field="*{platform.platformId}" class="form-control">
+                <option th:each="platform: ${platforms}" th:value="${platform.platformId}" th:text="${platform.name}">
+                </option>
+            </select>
+
+            <br>
+
+            <p><input type="submit" class="btn btn-primary" value="Save game" /></p>
+        </form>
+
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>
