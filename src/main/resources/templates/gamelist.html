@@ -54,12 +54,7 @@
         </p>
         <br>
 
-        <p>
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out" class="btn btn-danger" />
-        </form>
-        </p>
-
+      
     </main>
     <div th:replace="fragments/footer :: footer"></div>
 </body>

@@ -28,25 +28,31 @@
         }
     </style>
     <ul>
-        <li><a href="/" th:href="@{/}">Home</a></li>
+        <li><a href="/index" th:href="@{/index}">Home</a></li>
         <li><a href="/gamelist" th:href="@{/gamelist}">Games</a></li>
-        <li><a href="/platformlist" th:href="@{/platformlist}">Platforms</a></li>
 
+
+        <li sec:authorize="hasAnyAuthority('USER', 'ADMIN')"><a href="/platformlist"
+                th:href="@{/platformlist}">Platforms</a></li>
 
 
         <li sec:authorize="hasAuthority('ADMIN')">
             <a href="/createplatform" th:href="@{/createplatform}">Create Platform</a>
         </li>
 
-        <li sec:authorize="isAnonymous()" style="float: right;"><a href="/login" th:href="@{/login}">Login</a></li>
 
-        <li sec:authorize="isAuthenticated()">
-            <form th:action="@{/logout}" method="post">
+        <li sec:authorize="isAnonymous()"
+            style="float: right; display: flex; align-items: center; height: 48px; margin-right: 10px;">
+            <a href=" /login" th:href="@{/login}" class="btn btn-success">Login</a>
+        </li>
+
+        <li sec:authorize="isAuthenticated()"
+            style="float: right; display: flex; align-items: center; height: 48px; margin-right: 10px;">
+            <form th:action=" @{/logout}" method="post">
                 <input type="submit" value="Sign Out" class="btn btn-danger" />
             </form>
         </li>
-        <!--  <li sec:authorize="isAuthenticated()" style="float: right;"><a href="/logout" th:href="@{/logout}">Logout</a>
-        </li> -->
+
         <!-- https://www.baeldung.com/spring-thymeleaf-user-info -->
         <!-- https://www.thymeleaf.org/doc/articles/springsecurity.html -->
 

@@ -13,30 +13,15 @@
     <div th:replace="fragments/navigation :: navigation"></div>
 
     <main class="container mt-4">
-        <h1> Welcome to the Game Center, <span sec:authentication="name"></span>!</h1>
 
-        <br>
+        <h2>Welcome to Game Center! </h2>
 
-        <p>
-            <a href="/newgame" class="btn btn-primary">Add new game</a>
-        </p>
+        <div>
+            <p>Game Center is a place to browse and explore a collection of games.</p>
 
-        <br>
+            <p>Sign in to access additional features and manage your game collection.</p>
 
-        <p>
-            <a href="/platformlist" class="btn btn-primary">List all platforms</a>
-        </p>
-        <p sec:authorize="hasAuthority('ADMIN')">
-            <a href="/createplatform" class="btn btn-primary">Add new platform</a>
-        </p>
-
-        <br>
-
-        <p>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out" class="btn btn-danger" />
-        </form>
-        </p>
+        </div>
 
     </main>
 

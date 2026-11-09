@@ -18,34 +18,32 @@
         <br>
 
         <form action="#" th:action="@{/savegame}" th:object="${game}" method="post">
-            <label for="id"></label>
 
+            <label for="id"></label>
             <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
 
-            <p>Name: <input type="text" th:field="*{name}" />
+            <p>Name: <input type="text" th:field="*{name}" class="form-control" />
                 <span th:if="${#fields.hasErrors('name')}">Name is required and must be between 2 and 50 characters
                     long</span>
             </p>
 
 
-            <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
+            <p>Publisher: <input type="text" th:field="*{publisher}" class="form-control" /></p>
 
-            <p>Year: <input type="number" th:field="*{publishingYear}" />
+            <p>Year: <input type="number" th:field="*{publishingYear}" class="form-control" />
                 <span th:if="${#fields.hasErrors('publishingYear')}">Year must be between 1950 and 2050</span>
             </p>
 
-            <p>Description: <input type="text" th:field="*{description}" />
+            <p>Description: <input type="text" th:field="*{description}" class="form-control" />
                 <span th:if="${#fields.hasErrors('description')}">Description must be no more than 750 characters
                     long</span>
             </p>
 
-            <label for="platformlist">Platform:
-                <select id="platformlist" th:field="*{platform}" class="form-control">
-                    <option th:each="platform: ${platforms}" th:value="${platform.platformId}"
-                        th:text="${platform.name}">
-                    </option>
-                </select>
-            </label>
+            <label for="platformlist" class="form-label">Platform:</label>
+            <select id="platformlist" th:field="*{platform}" class="form-select">
+                <option th:each="platform: ${platforms}" th:value="${platform.platformId}" th:text="${platform.name}">
+                </option>
+            </select>
 
             <br>
             <br>

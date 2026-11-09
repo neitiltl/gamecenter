@@ -13,7 +13,6 @@ import backend.gamecenter.domain.Game;
 import backend.gamecenter.domain.GameRepository;
 import backend.gamecenter.domain.PlatformRepository;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GameController {
@@ -44,6 +43,7 @@ public class GameController {
             return "gameform";
         } else {
             gameRepository.save(game);
+            model.addAttribute("game", game);
             return "showgame";
         }
     }

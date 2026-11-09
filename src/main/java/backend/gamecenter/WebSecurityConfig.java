@@ -31,43 +31,24 @@ public class WebSecurityConfig {
                 http
                                 .authorizeHttpRequests(authorize -> authorize
                                                 .requestMatchers("/css/**").permitAll() // Enable css when logged out
-                                                .requestMatchers("/gamelist").permitAll() // Enable gamelist when logged out
+
+                                                .requestMatchers("/", "/index", "/gamelist").permitAll()
+                                                // Enable when logged out
+
                                                 .requestMatchers("/delete/**").hasAuthority("ADMIN")
+                                                .requestMatchers("/createplatform", "/saveplatform")
+                                                .hasAuthority("ADMIN")
+
                                                 .anyRequest().authenticated())
+
                                 .formLogin(formlogin -> formlogin
                                                 .loginPage("/login")
-                                                .defaultSuccessUrl("/gamelist", true)
+                                                .defaultSuccessUrl("/index", true)
                                                 .permitAll())
+
                                 .logout(logout -> logout
                                                 .permitAll());
                 return http.build();
         }
 
-        /*
-         * @Bean
-         * public UserDetailsService userDetailsService() {
-         * List<UserDetails> users = new ArrayList<>();
-         * 
-         * PasswordEncoder passwordEncoder =
-         * PasswordEncoderFactories.createDelegatingPasswordEncoder();
-         * 
-         * UserDetails user1 = User
-         * .withUsername("user")
-         * .password(passwordEncoder.encode("user"))
-         * .roles("USER")
-         * .build();
-         * 
-         * users.add(user1);
-         * 
-         * UserDetails user2 = User
-         * .withUsername("admin")
-         * .password(passwordEncoder.encode("admin"))
-         * .roles("USER", "ADMIN")
-         * .build();
-         * 
-         * users.add(user2);
-         * 
-         * return new InMemoryUserDetailsManager(users);
-         * }
-         */
 }

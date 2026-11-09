@@ -21,13 +21,16 @@
             <label for="id"></label>
             <input type="hidden" id="id" th:field="*{id}" readonly="readonly" />
 
-            <p>Name: <input type="text" th:field="*{name}" /></p>
-            <p>Publisher: <input type="text" th:field="*{publisher}" /></p>
-            <p>Year: <input type="number" th:field="*{publishingYear}" /></p>
-            <p>Description: <input type="text" th:field="*{description}" /></p>
+            <p>Name: <input type="text" th:field="*{name}" class="form-control" /></p>
 
-            <label for="platformlist">Platform: </label>
-            <select id="platformlist" th:field="*{platform.platformId}" class="form-control">
+            <p>Publisher: <input type="text" th:field="*{publisher}" class="form-control" /></p>
+
+            <p>Year: <input type="number" th:field="*{publishingYear}" class="form-control" /></p>
+
+            <p>Description: <input type="text" th:field="*{description}" class="form-control" /></p>
+
+            <label for="platformlist" class="form-label">Platform:</label>
+            <select id="platformlist" th:field="*{platform}" class="form-select">
                 <option th:each="platform: ${platforms}" th:value="${platform.platformId}" th:text="${platform.name}">
                 </option>
             </select>
